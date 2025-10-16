@@ -19,7 +19,7 @@ Simpan hasil XML ke file untuk di-upload ke Accurate atau sistem lain.
 
 
 📄 Format Excel yang Didukung
-- Sheet: Sheet1
+- Sheet: sistem hanya mendeteksi Sheet1
 - Header dimulai dari baris ke-2 (baris pertama berisi TRANSACTIONID di sel B1)
 - Kolom wajib:
 - ID
@@ -47,4 +47,20 @@ Ikuti instruksi di UI untuk preview dan validasi data.
 - [ ] Validasi kolom tambahan (e.g. PAYEE, NAMA BANK)
 - [ ] Filter dan pencarian invoice
 - [ ] Multi-sheet support
+
+## 🚀 Preview Halaman Utama
+
+![Preview Halaman Utama](https://github.com/user-attachments/assets/b9f50d97-d4bb-4659-aae3-825e6eca89bc)
+
+
+## 🚀 Preview Halaman Jenis Transaksi Penerimaan
+
+![Preview Halaman Penerimaan](https://github.com/user-attachments/assets/bfd7fc75-91fe-4056-865c-a2a620bae0fe)
+
+## 🚀 Preview Halaman Jenis Transaksi Pembayaran
+
+![Preview Halaman Pembayaran](https://github.com/user-attachments/assets/72e8c2cf-c6bf-4f52-ba47-96ede7193e3e)
+
+
+
 
