@@ -48,6 +48,13 @@ Ikuti instruksi di UI untuk preview dan validasi data.
 - [ ] Filter dan pencarian invoice
 - [ ] Multi-sheet support
 
+📌 Note Penting Banget Biar Proses Import Lancar
+- Setiap aplikasi Accurate selalu punya BranchCode yg unic (PerPC)
+- Jadi harus cek dulu BranchCode dengan cara : 
+- Pilih Menu Berkas/file -> pilih Export import data
+- export salah satu data yg ada, lalu cek BranchCode dengan notepad / vscode
+- paste BranchCode yg ada di app.py jika ingin pakai yg versi ui
+
 ## 🚀 Preview Halaman Utama
 
 ![Preview Halaman Utama](https://github.com/user-attachments/assets/b9f50d97-d4bb-4659-aae3-825e6eca89bc)
