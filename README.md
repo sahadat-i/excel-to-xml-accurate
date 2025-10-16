@@ -49,7 +49,7 @@ Ikuti instruksi di UI untuk preview dan validasi data.
 - [ ] Multi-sheet support
 
 📌 Note Penting Banget Biar Proses Import Lancar
-- Setiap aplikasi Accurate selalu punya BranchCode yg unic (PerPC)
+- Setiap database Accurate selalu punya BranchCode yg unic
 - Jadi harus cek dulu BranchCode dengan cara : 
 - Pilih Menu Berkas/file -> pilih Export import data
 - export salah satu data yg ada, lalu cek BranchCode dengan notepad / vscode
