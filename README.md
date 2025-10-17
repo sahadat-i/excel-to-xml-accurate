@@ -2,6 +2,7 @@
 A Streamlit-based tool to preview, validate, and convert Excel data into XML format—designed for accounting workflows and Accurate 5 integration.
 
 🚀 Fitur Utama
+- ✅ Otomatis Deteksi Branchcode
 - ✅ Preview Data dengan Pagination
 Tampilkan data Excel secara interaktif, lengkap dengan kolom nomor urut dan navigasi halaman.
 - 🔍 Validasi Kolom AKUN BANK
@@ -47,13 +48,6 @@ Ikuti instruksi di UI untuk preview dan validasi data.
 - [ ] Validasi kolom tambahan (e.g. PAYEE, NAMA BANK)
 - [ ] Filter dan pencarian invoice
 - [ ] Multi-sheet support
-
-📌 Note Penting Banget Biar Proses Import Lancar
-- Setiap database Accurate selalu punya BranchCode yg unic
-- Jadi harus cek dulu BranchCode dengan cara : 
-- Pilih Menu Berkas/file -> pilih Export import data
-- export salah satu data yg ada, lalu cek BranchCode dengan notepad / vscode
-- paste BranchCode yg ada di app.py jika ingin pakai yg versi ui
 
 ## 🚀 Preview Halaman Utama
 
