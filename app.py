@@ -7,9 +7,9 @@ from datetime import datetime
 
 # ✅ Fungsi cache untuk baca Excel
 @st.cache_data
-def load_excel(file):
-    raw = pd.read_excel(file, sheet_name="Sheet1", header=None)
-    df = pd.read_excel(file, sheet_name="Sheet1", skiprows=1)
+def load_excel(file, sheet_name):
+    raw = pd.read_excel(file, sheet_name=sheet_name, header=None)
+    df = pd.read_excel(file, sheet_name=sheet_name, skiprows=1)
     return raw, df
 
 def format_tanggal_excel(excel_date):
@@ -77,19 +77,30 @@ if not st.session_state.branch_code and not st.session_state.xml_uploaded:
 
 if st.session_state.branch_code:
     st.write("##### 📊 Upload file Excel untuk dikonversi ke XML Accurate")
+    # Pilih jenis transaksi
+    trans_type = st.selectbox("Pilih jenis transaksi:", ["Pembayaran", "Penerimaan"])
+    sheet_name = trans_type.upper()
     uploaded_file = st.file_uploader("Upload file Excel (.xlsx)", type=["xlsx"])
-
     if uploaded_file:
         # Ambil TRANSACTIONID awal dari B1
-        raw_excel, df = load_excel(uploaded_file)
+        raw_excel, df = load_excel(uploaded_file, sheet_name)
         try:
             start_id = int(raw_excel.iloc[0, 1])
         except Exception:
             st.error("❌ Sel B1 harus berisi angka sebagai TRANSACTIONID awal.")
             st.stop()
 
-        # Pilih jenis transaksi
-        trans_type = st.selectbox("Pilih jenis transaksi:", ["Pembayaran", "Penerimaan"])
+            # Bersihkan header
+        df.columns = df.columns.str.strip().str.upper()
+        st.success(f"✅ Data berhasil dibaca dari sheet `{sheet_name}`.")
+        df_preview = df.head(5).copy()
+        df_preview["TANGGAL_RAW"] = convert_tanggal_column(df_preview)
+        df_preview["TANGGAL"] = df_preview["TANGGAL_RAW"].dt.strftime("%d/%m/%Y")
+        df_preview.drop(columns=["TANGGAL_RAW"], inplace=True)
+        df_preview.insert(0, "No", range(1, len(df_preview) + 1))
+        st.markdown("📋 Preview 5 baris pertama:")
+        st.dataframe(df_preview.reset_index(drop=True))
+
         # Kolom wajib umum
         required_fields = {
             "NO_INVOICE": "No Invoice",
@@ -125,10 +136,10 @@ if st.session_state.branch_code:
                     st.dataframe(df[mask])
                     st.stop()
 
-        st.success("✅ File berhasil dibaca. Preview data:")
+        st.success("✅ Final Preview data:")
         # st.dataframe(df) non pagination
         df["TANGGAL_RAW"] = convert_tanggal_column(df)
-        df["TANGGAL"] = df["TANGGAL_RAW"].dt.strftime("%Y-%m-%d")  # preview
+        df["TANGGAL"] = df["TANGGAL_RAW"].dt.strftime("%d/%m/%Y")  # preview
         df_display = df.copy()
         df_display.drop(columns=["TANGGAL_RAW"], inplace=True) 
         df_display.insert(0, "No", range(1, len(df_display) + 1))
